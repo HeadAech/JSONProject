@@ -4,9 +4,9 @@ public class FinalCountry {
     private Country rightCountry;
     private Double recoveredToDeathRatio;
     private Double recoveredToConfirmedCasesRatio;
-    private Double leftDeathstoRight;
-    private Double leftRecoveredToRight;
-    private Double leftConfirmedToRight;
+    private Double leftDeathstoRightRatio;
+    private Double leftRecoveredToRightRatio;
+    private Double leftConfirmedToRightRatio;
 
     public FinalCountry(Country country, Double recoveredToDeathRatio, Double recoveredToConfirmedCasesRatio){
         this.country = country;
@@ -14,11 +14,11 @@ public class FinalCountry {
         this.recoveredToConfirmedCasesRatio = recoveredToConfirmedCasesRatio;
     }
 
-    public FinalCountry(Country leftCountry, Country rightCountry, Double leftDeathstoRight, Double leftConfirmedToRight, Double leftRecoveredToRight){
+    public FinalCountry(Country leftCountry, Country rightCountry, Double leftDeathstoRightRatio, Double leftConfirmedToRightRatio, Double leftRecoveredToRightRatio){
         this.leftCountry = leftCountry;
         this.rightCountry = rightCountry;
-        this.leftDeathstoRight = leftDeathstoRight;
-        this.leftConfirmedToRight = leftConfirmedToRight;
-        this.leftRecoveredToRight = leftRecoveredToRight;
+        this.leftDeathstoRightRatio = leftDeathstoRightRatio;
+        this.leftConfirmedToRightRatio = leftConfirmedToRightRatio;
+        this.leftRecoveredToRightRatio = leftRecoveredToRightRatio;
     }
 }

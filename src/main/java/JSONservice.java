@@ -23,8 +23,6 @@ public class JSONservice {
 
     public static List<FinalCountry> prepareDataTwoCountries(List<Country> countryList1, List<Country> countryList2){
         List<FinalCountry> finalCountryList = new ArrayList<>();
-        System.out.println(countryList1.size());
-        System.out.println(countryList2.size());
         for(int i = 0; i < countryList1.size(); i++){
             int leftD = countryList1.get(i).getDeaths();
             int leftR = countryList1.get(i).getRecovered();
