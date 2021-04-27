@@ -3,13 +3,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
-        JSONArray jsonArray = JSONreader.getJsonFromUrl("https://api.covid19api.com/country/poland?from=2020-06-01T00:00:00Z&to=2020-07-01T00:00:00Z");
+        List<Country> list1 = JSONreader.createJsonList("poland", "2020-07-01", "2020-08-01");
 
-        for(int i = 0; i < jsonArray.size(); i++){
-            System.out.println(jsonArray.get(i).toString());
-        }
+        System.out.println(list1.toString());
     }
 }

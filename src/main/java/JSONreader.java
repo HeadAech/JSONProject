@@ -1,11 +1,14 @@
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class JSONreader {
@@ -45,5 +48,18 @@ public class JSONreader {
 
            return data_obj;
         }
+    }
+
+    public static List<Country> createJsonList(String country, String dateFrom, String dateTo) throws IOException, ParseException {
+        List<Country> data = new ArrayList<>();
+        JSONArray jsonArray = getJsonFromUrl("https://api.covid19api.com/country/"+country+"?from="+dateFrom+"&to"+dateTo);
+
+        for(int i = 0; i < jsonArray.size(); i++){
+            JSONObject json = (JSONObject) jsonArray.get(i);
+            Country countryObj = new Country(Integer.parseInt(json.get("Recovered").toString()), Integer.parseInt(json.get("Deaths").toString()), Integer.parseInt(json.get("Active").toString()), Integer.parseInt(json.get("Confirmed").toString()), json.get("Country").toString(), json.get("Date").toString());
+            data.add(countryObj);
+        }
+
+        return data;
     }
 }
