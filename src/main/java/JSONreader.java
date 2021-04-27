@@ -52,7 +52,7 @@ public class JSONreader {
 
     public static List<Country> createJsonList(String country, String dateFrom, String dateTo) throws IOException, ParseException {
         List<Country> data = new ArrayList<>();
-        JSONArray jsonArray = getJsonFromUrl("https://api.covid19api.com/country/"+country+"?from="+dateFrom+"&to"+dateTo);
+        JSONArray jsonArray = getJsonFromUrl("https://api.covid19api.com/country/"+country+"?from="+dateFrom+"&to="+dateTo);
 
         for(int i = 0; i < jsonArray.size(); i++){
             JSONObject json = (JSONObject) jsonArray.get(i);

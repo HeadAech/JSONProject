@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    public void menu() throws IOException, ParseException {
+    public static void menu() throws IOException, ParseException {
         System.out.println("Wybierz opcję z listy:");
         System.out.println("1. Informacje o jednym kraju.");
         System.out.println("2. Porównanie dwóch krajów.");
@@ -23,9 +23,9 @@ public class Menu {
         }
     }
 
-    public void infoOneCountry() throws IOException, ParseException {
+    public static void infoOneCountry() throws IOException, ParseException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj nazwę kraju:");
+        System.out.println("Podaj nazwę kraju (angielska, małymi literami np. poland):");
         String countryName = scanner.nextLine();
         System.out.println("Podaj datę początkową (format: ROK-MIESIAC-DZIEN, yyyy-mm-dd):");
         String dateFrom = scanner.nextLine();
@@ -38,7 +38,27 @@ public class Menu {
 
     }
 
-    public void twoCountriesComparison(){
+    public static void twoCountriesComparison() throws IOException, ParseException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("PIERWSZY KRAJ");
+        System.out.println("Podaj nazwę kraju (angielska, małymi literami np. poland):");
+        String countryName1 = scanner.nextLine();
+        System.out.println("DRUGI KRAJ");
+        System.out.println("Podaj nazwę kraju (angielska, małymi literami np. poland):");
+        String countryName2 = scanner.nextLine();
+
+        System.out.println("Podaj datę początkową (format: ROK-MIESIAC-DZIEN, yyyy-mm-dd):");
+        String dateFrom = scanner.nextLine();
+        System.out.println("Podaj datę końcową (format: ROK-MIESIAC-DZIEN, yyyy-mm-dd):");
+        String dateTo = scanner.nextLine();
+
+
+        List<Country> list1 = JSONreader.createJsonList(countryName1, dateFrom, dateTo);
+        List<Country> list2 = JSONreader.createJsonList(countryName2, dateFrom, dateTo);
+        System.out.println(list1);
+        System.out.println(list2);
+        List<FinalCountry> finalCountryList = JSONservice.prepareDataTwoCountries(list1, list2);
+        JSONsaver.saveToJsonFile(finalCountryList, "comparison-" + countryName1 + "-" + countryName2);
 
     }
 }
